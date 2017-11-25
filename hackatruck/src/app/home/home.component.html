@@ -1,3 +1,65 @@
-<p>
-  home works!
-</p>
+<div class="container">
+    <!-- Example row of columns -->
+    <div class="row">
+      <div class="col-md chart">
+        <h4>Disponibilidad</h4>
+          <ngx-charts-number-card
+          [view]="view"
+          [scheme]="colorScheme"
+          [results]="single"
+          (select)="onSelect($event)">
+        </ngx-charts-number-card>
+      </div>
+      <div class="col-md">
+        <h4>Heading</h4>
+        <ngx-charts-gauge
+          [view]="view"
+          [scheme]="colorScheme"
+          [results]="single"
+          [min]="0"
+          [max]="100"
+          [angleSpan]="240"
+          [startAngle]="-120"
+          [units]="'alerts'"
+          [bigSegments]="10"
+          [smallSegments]="5"
+          (select)="onSelect($event)">
+        </ngx-charts-gauge>
+      </div>
+    </div>
+    <hr>
+    <div class="row">
+      <div class="col-md">
+        <h4>Heading</h4>
+        <ngx-charts-pie-chart
+        [view]="view"
+        [scheme]="colorScheme"
+        [results]="single"
+        [legend]="showLegend"
+        [explodeSlices]="explodeSlices"
+        [labels]="showLabels"
+        [doughnut]="doughnut"
+        [gradient]="gradient"
+        (select)="onSelect($event)">
+      </ngx-charts-pie-chart>
+      </div>
+      <div class="col-md">
+        <h4>Estadistica</h4>
+        <ngx-charts-line-chart
+        [view]="view"
+        [scheme]="colorScheme"
+        [results]="multi"
+        [gradient]="gradient"
+        [xAxis]="showXAxis"
+        [yAxis]="showYAxis"
+        [legend]="showLegend"
+        [showXAxisLabel]="showXAxisLabel"
+        [showYAxisLabel]="showYAxisLabel"
+        [xAxisLabel]="xAxisLabel"
+        [yAxisLabel]="yAxisLabel"
+        [autoScale]="autoScale"
+        (select)="onSelect($event)">
+      </ngx-charts-line-chart>
+      </div>
+    </div>
+  </div>

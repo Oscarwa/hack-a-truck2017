@@ -6,6 +6,7 @@ import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { AngularFireAuthModule } from 'angularfire2/auth';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FormsModule }   from '@angular/forms';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppComponent } from './app.component';
 import { AppNavbarComponent } from './app-navbar/app-navbar.component';
@@ -19,6 +20,7 @@ import { ParkingLotComponent } from './parking-lot/parking-lot.component';
 import { HomeComponent } from './home/home.component';
 import { TrailerService } from './trailer.service';
 import { TrailerDetailComponent } from './trailer-detail/trailer-detail.component';
+import { NgxChartsModule } from '@swimlane/ngx-charts';
 
 @NgModule({
   declarations: [
@@ -38,7 +40,9 @@ import { TrailerDetailComponent } from './trailer-detail/trailer-detail.componen
     AngularFireAuthModule,
     NgbModule.forRoot(),
     AppRoutingModule,
-    FormsModule
+    FormsModule,
+    BrowserAnimationsModule,
+    NgxChartsModule
   ],
   providers: [ ParkService, TrailerService ],
   bootstrap: [AppComponent]
