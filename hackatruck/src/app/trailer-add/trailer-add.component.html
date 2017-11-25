@@ -1,0 +1,82 @@
+<form #trailerForm="ngForm">
+  <div class="form-group">
+    <label for="operator">Operador</label>
+    <input type="text" class="form-control" name="operator" placeholder="Juan Rodriguez" [(ngModel)]="trailer.operator" />
+  </div>
+  <div class="form-group">
+    <label for="license">Licencia</label>
+    <input type="text" class="form-control" name="license" placeholder="222233334444" [(ngModel)]="trailer.license" />
+  </div>
+  <div class="form-group">
+    <div class="row">
+      <div class="col-sm">
+        <label for="origin">Origen</label>
+        <input type="text" class="form-control" name="origin" placeholder="MTY" [(ngModel)]="trailer.origin" />
+      </div>
+      <div class="col-sm">
+        <label for="destination">Destino</label>
+        <input type="text" class="form-control" name="destination" placeholder="GDL" [(ngModel)]="trailer.destination" />
+      </div>
+    </div>
+  </div>
+  <div class="form-group">
+    <div class="row">
+      <div class="col-sm">
+        <p for="arrival">Llegada</p>
+        <!-- <input type="date" class="form-control" name="arrival" [(ngModel)]="trailer.arrival" /> -->
+        <ngb-datepicker #dp [(ngModel)]="trailer.arrival" name="arrival" (navigate)="date = $event.next"></ngb-datepicker>
+      </div>
+      <div class="col-sm">
+        <p for="estimatedDeparture">Salida estimada</p>
+        <!-- <input type="date" class="form-control" name="estimatedDeparture" [(ngModel)]="trailer.estimatedDeparture" /> -->
+        <ngb-datepicker #dp [(ngModel)]="trailer.estimatedDeparture" name="estimatedDeparture" (navigate)="date = $event.next"></ngb-datepicker>        
+      </div>
+    </div>
+  </div>
+  <div class="form-group">
+    <div class="row">
+      <div class="col-sm-4">
+        <label for="category">Categoria</label>
+        <select class="form-control" name="category" [(ngModel)]="trailer.category">
+          <option value="1">Comida</option>
+          <option value="2">Electronicos</option>
+          <option value="3">Textiles</option>
+          <option selected value="4">Varios</option>
+          <option value="5">Vacio</option>
+        </select>
+      </div>
+      <div class="col-sm-2">
+        <label for="weigth">Peso (kg)</label>
+        <input type="number" class="form-control" name="weigth" [(ngModel)]="trailer.weigth" />
+      </div>
+      <div class="col-sm-3">
+          <label for="capacity">Capacidad (m<sup>3</sup>)</label>
+          <input type="number" class="form-control" name="capacity" [(ngModel)]="trailer.capacity" />
+        </div>
+      <div class="col-sm" data-toggle="buttons">
+        <label for="isLoaded" style="display:block;">&nbsp;</label>
+        <label class="btn btn-secondary active" ngbButtonLabel>
+          <input type="checkbox" class="form-control" name="isLoaded" autocomplete="off" ngbButton checked [(ngModel)]="trailer.isLoaded" />Trailer cargado
+        </label>
+      </div>
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="tractor">Tractor</label>
+    <input type="text" class="form-control" name="tractor" [(ngModel)]="trailer.tractor" />
+  </div>
+  <div class="form-group">
+    <label for="trailer">Remolque</label>
+    <input type="text" class="form-control" name="trailer" [(ngModel)]="trailer.trailer" />
+  </div>
+  <div class="form-group">
+    <label for="container">Contenedor</label>
+    <input type="text" class="form-control" name="container" [(ngModel)]="trailer.container" />
+  </div>
+  <div class="row">
+      <div class="col">
+        <button type="button" class="btn btn-secondary" >Cancelar</button>
+        <button type="button" class="btn btn-primary" (click)="onSubmit()">Guardar</button>
+      </div>
+  </div>
+</form>

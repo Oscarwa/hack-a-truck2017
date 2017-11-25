@@ -5,20 +5,31 @@ import { AngularFireModule } from 'angularfire2';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { AngularFireAuthModule } from 'angularfire2/auth';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { FormsModule }   from '@angular/forms';
 
 import { AppComponent } from './app.component';
 import { AppNavbarComponent } from './app-navbar/app-navbar.component';
 import { CoursesListComponent } from './courses-list/courses-list.component';
 import { AppRoutingModule } from './/app-routing.module';
 import { TrailersComponent } from './trailers/trailers.component';
+import { TrailerAddComponent } from './trailer-add/trailer-add.component';
 
+import { ParkService } from './park.service';
+import { ParkingLotComponent } from './parking-lot/parking-lot.component';
+import { HomeComponent } from './home/home.component';
+import { TrailerService } from './trailer.service';
+import { TrailerDetailComponent } from './trailer-detail/trailer-detail.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     AppNavbarComponent,
     CoursesListComponent,
-    TrailersComponent
+    TrailersComponent,
+    TrailerAddComponent,
+    ParkingLotComponent,
+    HomeComponent,
+    TrailerDetailComponent
   ],
   imports: [
     BrowserModule,
@@ -26,9 +37,10 @@ import { TrailersComponent } from './trailers/trailers.component';
     AngularFireDatabaseModule,
     AngularFireAuthModule,
     NgbModule.forRoot(),
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule
   ],
-  providers: [],
+  providers: [ ParkService, TrailerService ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

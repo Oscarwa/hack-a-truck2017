@@ -1,0 +1,24 @@
+<div *ngIf="loaded">
+  <ngb-alert type="warning" [dismissible]="false">
+    <h4>Operador: {{trailer.operator}}</h4>
+    <p>Licencia: {{trailer.license}}</p>
+  </ngb-alert>
+  <ngb-alert type="dark" [dismissible]="false">
+    <div>Origen: {{trailer.origin}}</div>
+    <div>Destino: {{trailer.destination}}</div>
+  </ngb-alert>
+  <ngb-alert type="dark" [dismissible]="false">
+    <div>Llegada: {{trailer.arrival.year}}-{{trailer.arrival.month}}-{{trailer.arrival.day}}  {{trailerExt.daysSinceArrival}}</div>
+    <div>Salida estimada: {{trailer.estimatedDeparture.year}}-{{trailer.estimatedDeparture.month}}-{{trailer.estimatedDeparture.day}}  {{trailerExt.daysUntilDeparture}}</div>
+  </ngb-alert>
+  <ngb-alert type="info" [dismissible]="false">
+    <div>Categoria: {{trailer.category}}</div>
+    <div>Capacidad: {{trailer.capacity}} m<sup>3</sup></div>
+    <div>Peso: {{trailer.weigth}} kg</div>
+  </ngb-alert>
+  <ngb-alert type="dark" [dismissible]="false">
+    <h5>Tractor: {{trailer.tractor}}</h5>
+    <h5>Trailer: {{trailer.trailer}}</h5>
+    <h5>Contenedor: {{trailer.container}}</h5>
+  </ngb-alert>
+</div>

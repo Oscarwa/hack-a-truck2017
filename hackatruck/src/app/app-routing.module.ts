@@ -2,12 +2,18 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
 import { TrailersComponent } from './trailers/trailers.component';
-//import { DashboardComponent } from './dashboard/dashboard.component';
+import { TrailerAddComponent } from './trailer-add/trailer-add.component';
+import { ParkingLotComponent } from './parking-lot/parking-lot.component';
+import { HomeComponent } from './home/home.component';
+import { TrailerDetailComponent } from './trailer-detail/trailer-detail.component';
 
 const routes: Routes = [
   { path: 'trailers', component: TrailersComponent },
-  //{ path: 'dashboard', component: DashboardComponent },
-  { path: '', redirectTo: '/', pathMatch: 'full' },
+  { path: 'trailers/checkin', component: TrailerAddComponent },
+  { path: 'trailers/:id', component: TrailerDetailComponent },
+  { path: 'parking-lot', component: ParkingLotComponent },
+  { path: 'home', component: HomeComponent },  
+  { path: '', redirectTo: '/home', pathMatch: 'full' },
 ];
 
 @NgModule({

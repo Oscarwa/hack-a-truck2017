@@ -1,4 +1,14 @@
 <div class="jumbotron">
-  <h3>Courses List</h3>
+  <h3>Lista de trailers</h3>
 </div>
-<courses-list></courses-list>
+<ul>
+    <div *ngFor="let trailer of trailersObservable | async">
+        <ngb-alert type="info" [dismissible]="false">
+            <h3><a href="#">{{trailer.plate}}</a> </h3>
+            <p>{{trailer.capacity}}</p>
+            <div>
+                <span>{{trailer.category}}</span>
+            </div>
+        </ngb-alert> 
+    </div>
+  </ul>

@@ -1,0 +1,19 @@
+<div class="container concrete">
+  <section class="area-a area">
+    <section class="left">
+      <div *ngFor="let item of parksA1" class="spot" placement="left" ngbTooltip="{{item.area}}{{item.number}} - {{item.id}}" [ngClass]="{'occupied' : !!item.id }" routerLink="/trailers/{{item.id}}"></div>
+    </section>
+    <section class="right">
+      <div *ngFor="let item of parksA2" class="spot" placement="right" ngbTooltip="{{item.area}}{{item.number}}" [ngClass]="{'occupied' : !!item.id }" routerLink="/trailers/{{item.id}}"></div>
+    </section>
+  </section>
+  <section class="area-b area">
+    <section class="left">
+      <div *ngFor="let item of parksB1" class="spot" placement="left" ngbTooltip="{{item.area}}{{item.number}}" [ngClass]="{'occupied' : !!item.id }" routerLink="/trailers/{{item.id}}"></div>
+    </section>
+    <section class="right">
+      <div *ngFor="let item of parksB2" class="spot" placement="right" ngbTooltip="{{item.area}}{{item.number}}" [ngClass]="{'occupied' : !!item.id }" routerLink="/trailers/{{item.id}}"></div>
+    </section>
+  </section>
+  <section class="gate"></section>
+</div>
