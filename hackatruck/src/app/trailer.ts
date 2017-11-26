@@ -3,9 +3,10 @@ import { NgbDateStruct } from "@ng-bootstrap/ng-bootstrap/datepicker/ngb-date-st
 export class Trailer {
 
     constructor(
-        public key: string,
-        public operator: string,
-        public licenseNumber: string,
+        public operatorIn: string,
+        public licenseNumberIn: string,
+        public operatorOut: string,
+        public licenseNumberOut: string,
         public origin: string,
         public destination: string,
         public arrival: NgbDateStruct,
@@ -16,6 +17,7 @@ export class Trailer {
         public isLoaded: boolean,
         public tractor: string,
         public trailer: string,
-        public container: string
+        public container: string,
+        public active: boolean
     ) { }
 }

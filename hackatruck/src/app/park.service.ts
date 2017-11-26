@@ -25,6 +25,17 @@ export class ParkService {
       });
   }
 
+  searchByTrailer(id: string): Observable<any> {
+    return this.db.list<Park>('/parks', ref => ref.orderByChild('id').equalTo(id)).snapshotChanges()
+    .map(actions => {
+      return actions.map(action => {
+        const $key = action.payload.key;
+        const data = { $key, ...action.payload.val() };
+        return data;
+      })
+    });
+  }
+
   update(parkId: string, trailerId: string) {
     this.db.object('/parks/' + parkId + '/id').set(trailerId);
   }

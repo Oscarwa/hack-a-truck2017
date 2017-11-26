@@ -1,0 +1,34 @@
+<form #trailerForm ngForm>
+    <div class="form-group">
+      <label for="operator">Operador</label>
+      <input type="text" class="form-control" name="operatorOut" placeholder="Juan Rodriguez" [(ngModel)]="trailer.operatorOut"/>
+    </div>
+    <div class="form-group">
+      <label for="license">Licencia</label>
+      <input type="text" class="form-control" name="licenseOut" placeholder="222233334444" [(ngModel)]="trailer.licenseNumberOut" />
+    </div>
+    <div class="form-group">
+      <div class="row">
+        <div class="col-sm">
+          <p for="arrival">Llegada</p>
+          <!-- <input type="date" class="form-control" name="arrival" [(ngModel)]="trailer.arrival" /> -->
+          <span class="form-control">{{trailer.arrival.year}}-{{trailer.arrival.month + 1}}-{{trailer.arrival.day}}</span>
+        </div>
+        <div class="col-sm">
+          <p for="estimatedDeparture">Salida</p>
+          <ngb-datepicker #dp [(ngModel)]="trailer.estimatedDeparture" name="estimatedDeparture" (navigate)="date = $event.next"></ngb-datepicker>        
+        </div>
+      </div>
+    </div>
+    <ngb-alert type="dark" [dismissible]="false">
+      <h5>Tractor: {{trailer.tractor}}</h5>
+      <h5>Trailer: {{trailer.trailer}}</h5>
+      <h5>Contenedor: {{trailer.container}}</h5>
+    </ngb-alert>
+    <div class="row float-sm-right">
+        <div class="col">
+          <button type="button" class="btn btn-secondary" (click)="goBack()">Cancelar</button>
+          <button type="button" class="btn btn-primary" (click)="onSubmit()" [disabled]="!trailer.active">Confirmar salida</button>
+        </div>
+    </div>
+  </form>

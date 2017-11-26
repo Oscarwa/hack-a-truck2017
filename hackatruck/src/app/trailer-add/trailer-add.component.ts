@@ -4,6 +4,8 @@ import { Observable } from 'rxjs/Observable';
 import { Trailer } from '../trailer';
 import { Router } from '@angular/router';
 import { ParkService } from '../park.service';
+import { Category } from '../categories';
+import { TrailerService } from '../trailer.service';
 
 @Component({
   selector: 'app-trailer-add',
@@ -11,17 +13,20 @@ import { ParkService } from '../park.service';
   styleUrls: ['./trailer-add.component.css']
 })
 export class TrailerAddComponent implements OnInit {
-
+  categories: Category[];
   trailer: Trailer = <Trailer>{ };
   submitted = false;
 
-  constructor(private db: AngularFireDatabase, private router: Router, private parkService: ParkService) {
+  constructor(private db: AngularFireDatabase, private router: Router, private parkService: ParkService, private trailerService: TrailerService) {
   }
 
   ngOnInit() {
     this.trailer.isLoaded = true;
+    this.trailer.active = true;
     let now = new Date();
     this.trailer.arrival = {year: now.getFullYear(), month: now.getMonth() + 1, day: now.getDate()};
+
+    this.categories = this.trailerService.getCategories();
     // let newArray = [];
     // for(let i = 1; i <= 200; i++) {
     //   let newItem = {area: i <= 100 ? 'A' : 'B', number: i <= 100 ? i : i - 100, id: null};
@@ -40,7 +45,7 @@ export class TrailerAddComponent implements OnInit {
             let tmpParks = res.filter((item, index) => item.id == null && item.number >= (self.trailer.category - 1) * 25).sort(self.parkSort);
               if(!!tmpParks.length) { //empty spaces found, assign the nearest one
                 self.parkService.update(tmpParks[0].$key, r.key)
-                console.info(tmpParks[0].area, tmpParks[0].number);
+                //console.info(tmpParks[0].area, tmpParks[0].number);
               }
           });
         } else {
@@ -66,7 +71,7 @@ export class TrailerAddComponent implements OnInit {
       })(r, this);
     });
     //console.info(key)
-    //this.router.navigate(['/trailers']);
+    //this.router.navigate(['/']);
   }
 
   parkSort(a, b) { return a.number - b.number };

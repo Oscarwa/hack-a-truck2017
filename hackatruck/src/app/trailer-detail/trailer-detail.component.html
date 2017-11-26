@@ -1,7 +1,7 @@
 <div *ngIf="loaded">
   <ngb-alert type="warning" [dismissible]="false">
-    <h4>Operador: {{trailer.operator}}</h4>
-    <p>Licencia: {{trailer.license}}</p>
+    <h4>Operador: {{trailer.operatorIn}}</h4>
+    <p>Licencia: {{trailer.licenseNumberIn}}</p>
   </ngb-alert>
   <ngb-alert type="dark" [dismissible]="false">
     <div>Origen: {{trailer.origin}}</div>
@@ -12,7 +12,7 @@
     <div>Salida estimada: {{trailer.estimatedDeparture.year}}-{{trailer.estimatedDeparture.month}}-{{trailer.estimatedDeparture.day}}  {{trailerExt.daysUntilDeparture}}</div>
   </ngb-alert>
   <ngb-alert type="info" [dismissible]="false">
-    <div>Categoria: {{trailer.category}}</div>
+    <div>Categoria: {{trailerExt.category}}</div>
     <div>Capacidad: {{trailer.capacity}} m<sup>3</sup></div>
     <div>Peso: {{trailer.weigth}} kg</div>
   </ngb-alert>
@@ -21,4 +21,7 @@
     <h5>Trailer: {{trailer.trailer}}</h5>
     <h5>Contenedor: {{trailer.container}}</h5>
   </ngb-alert>
+  <div class="float-sm-right">
+    <button class="btn btn-primary" routerLink="/trailers/checkout/{{trailerExt.folio}}" [disabled]="!trailer.active">Procesar salida</button>
+  </div>
 </div>

@@ -1,11 +1,11 @@
-<form #trailerForm="ngForm">
+<form #trailerForm ngForm>
   <div class="form-group">
     <label for="operator">Operador</label>
-    <input type="text" class="form-control" name="operator" placeholder="Juan Rodriguez" [(ngModel)]="trailer.operator" />
+    <input type="text" class="form-control" name="operatorIn" placeholder="Juan Rodriguez" [(ngModel)]="trailer.operatorIn" />
   </div>
   <div class="form-group">
     <label for="license">Licencia</label>
-    <input type="text" class="form-control" name="license" placeholder="222233334444" [(ngModel)]="trailer.license" />
+    <input type="text" class="form-control" name="licenseIn" placeholder="222233334444" [(ngModel)]="trailer.licenseIn" />
   </div>
   <div class="form-group">
     <div class="row">
@@ -24,7 +24,7 @@
       <div class="col-sm">
         <p for="arrival">Llegada</p>
         <!-- <input type="date" class="form-control" name="arrival" [(ngModel)]="trailer.arrival" /> -->
-        <ngb-datepicker #dp [(ngModel)]="trailer.arrival" name="arrival" (navigate)="date = $event.next"></ngb-datepicker>
+        <ngb-datepicker #da [(ngModel)]="trailer.arrival" name="arrival" (navigate)="date = $event.next"></ngb-datepicker>
       </div>
       <div class="col-sm">
         <p for="estimatedDeparture">Salida estimada</p>
@@ -38,11 +38,7 @@
       <div class="col-sm-4">
         <label for="category">Categoria</label>
         <select class="form-control" name="category" [(ngModel)]="trailer.category">
-          <option value="1">Comida</option>
-          <option value="2">Electronicos</option>
-          <option value="3">Textiles</option>
-          <option selected value="4">Varios</option>
-          <option value="5">Vacio</option>
+          <option *ngFor="let categoryT of categories" [ngValue]="categoryT.value">{{categoryT.label}}</option>
         </select>
       </div>
       <div class="col-sm-2">
@@ -73,7 +69,7 @@
     <label for="container">Contenedor</label>
     <input type="text" class="form-control" name="container" [(ngModel)]="trailer.container" />
   </div>
-  <div class="row">
+  <div class="row float-sm-right">
       <div class="col">
         <button type="button" class="btn btn-secondary" >Cancelar</button>
         <button type="button" class="btn btn-primary" (click)="onSubmit()">Guardar</button>

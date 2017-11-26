@@ -1,0 +1,12 @@
+.qr-code {
+    background-image: url('/assets/qr.png');
+    background-size: 40px 40px;
+    background-repeat: no-repeat;
+    background-position: center;
+    
+    width: 45px;
+    height: 45px;
+
+    margin: 0 7px;
+
+}

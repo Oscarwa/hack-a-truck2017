@@ -1,18 +1,30 @@
 <div class="container concrete">
   <section class="area-a area">
     <section class="left">
-      <div *ngFor="let item of parksA1" class="spot" placement="left" ngbTooltip="{{item.area}}{{item.number}} - {{item.id}}" [ngClass]="{'occupied' : !!item.id }" routerLink="/trailers/{{item.id}}"></div>
+      <div *ngFor="let item of parksA1">
+        <div *ngIf="!!item.id" class="spot occupied" placement="left" ngbTooltip="{{item.area}}{{item.number}}"  routerLink="/trailers/{{item.id}}"></div>
+        <div *ngIf="!item.id" class="spot" placement="left" ngbTooltip="{{item.area}}{{item.number}}"></div>
+      </div>
     </section>
     <section class="right">
-      <div *ngFor="let item of parksA2" class="spot" placement="right" ngbTooltip="{{item.area}}{{item.number}}" [ngClass]="{'occupied' : !!item.id }" routerLink="/trailers/{{item.id}}"></div>
+      <div *ngFor="let item of parksA2">
+        <div *ngIf="!!item.id" class="spot occupied" placement="right" ngbTooltip="{{item.area}}{{item.number}}"  routerLink="/trailers/{{item.id}}"></div>
+        <div *ngIf="!item.id" class="spot" placement="right" ngbTooltip="{{item.area}}{{item.number}}"></div>
+      </div>
     </section>
   </section>
   <section class="area-b area">
     <section class="left">
-      <div *ngFor="let item of parksB1" class="spot" placement="left" ngbTooltip="{{item.area}}{{item.number}}" [ngClass]="{'occupied' : !!item.id }" routerLink="/trailers/{{item.id}}"></div>
+      <div *ngFor="let item of parksB1">
+        <div *ngIf="!item.id" class="spot" placement="left" ngbTooltip="{{item.area}}{{item.number}}"></div>
+        <div *ngIf="!!item.id" class="spot occupied" placement="left" ngbTooltip="{{item.area}}{{item.number}}"  routerLink="/trailers/{{item.id}}"></div>
+      </div>
     </section>
     <section class="right">
-      <div *ngFor="let item of parksB2" class="spot" placement="right" ngbTooltip="{{item.area}}{{item.number}}" [ngClass]="{'occupied' : !!item.id }" routerLink="/trailers/{{item.id}}"></div>
+      <div *ngFor="let item of parksB2">
+        <div *ngIf="!!item.id" class="spot occupied" placement="right" ngbTooltip="{{item.area}}{{item.number}}"  routerLink="/trailers/{{item.id}}"></div>
+        <div *ngIf="!item.id" class="spot" placement="right" ngbTooltip="{{item.area}}{{item.number}}"></div>
+      </div>
     </section>
   </section>
   <section class="gate"></section>
