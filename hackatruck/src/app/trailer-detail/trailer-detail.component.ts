@@ -4,8 +4,10 @@ import { Location } from '@angular/common';
 import { TrailerService } from '../trailer.service';
 import { Observable } from 'rxjs/Observable';
 import { Trailer } from '../trailer';
-import { Router } from '@angular/router/src/router';
+import { Router } from '@angular/router';
 import { Category } from '../categories';
+import { ParkService } from '../park.service';
+import { Park } from '../park';
 
 @Component({
   selector: 'app-trailer-detail',
@@ -23,10 +25,13 @@ export class TrailerDetailComponent implements OnInit {
   loaded: boolean;
   qrCode: any;
   categories: Category[];
+  park= <Park>{};
 
   constructor(private route: ActivatedRoute,
     private trailerService: TrailerService,
-    private location: Location) { }
+    private location: Location,
+    private parkService: ParkService
+  ) { }
 
   ngOnInit() {
     this.categories = this.trailerService.getCategories();
@@ -48,6 +53,13 @@ export class TrailerDetailComponent implements OnInit {
         folio: id
       }
       this.loaded = true;
+    });
+
+    let $park = this.parkService.searchByTrailer(id);
+    $park.subscribe(res => {
+      if(!!res && res.length) {
+        this.park = res[0];
+      }
     });
   }
 

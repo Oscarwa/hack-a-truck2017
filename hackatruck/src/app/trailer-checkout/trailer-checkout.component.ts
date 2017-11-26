@@ -5,6 +5,7 @@ import { Location } from '@angular/common';
 import { Trailer } from '../trailer';
 import { Park } from '../park';
 import { ParkService } from '../park.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-trailer-checkout',
@@ -13,13 +14,14 @@ import { ParkService } from '../park.service';
 })
 export class TrailerCheckoutComponent implements OnInit {
   trailer: Trailer = <Trailer>{ arrival: {year:0,month:0,day:0} };
-  park: Park = <Park>{};
+  park = <any>{};
   id: string;
   constructor(
     private trailerService: TrailerService, 
     private parkService: ParkService, 
     private route: ActivatedRoute,
-    private _location: Location
+    private _location: Location,
+    private router: Router
   ) { }
 
   ngOnInit() {
@@ -33,7 +35,9 @@ export class TrailerCheckoutComponent implements OnInit {
 
     let $park = this.parkService.searchByTrailer(this.id);
     $park.subscribe(res => {
-
+      if(!!res && res.length) {
+        this.park = res[0];
+      }
     });
   }
 
@@ -45,7 +49,9 @@ export class TrailerCheckoutComponent implements OnInit {
     this.trailer.active = false;
     this.trailerService.update(this.id, this.trailer);
 
-    //this.parkService.freeSpot(this.id)
+    this.parkService.freeSpot(this.park.$key);   
+
+    this.router.navigate(['/']);
   }
 
 }

@@ -25,6 +25,10 @@ export class ParkService {
       });
   }
 
+  freeSpot(id: string) {
+    this.db.object('/parks/' + id + '/id').set(null);
+  }
+
   searchByTrailer(id: string): Observable<any> {
     return this.db.list<Park>('/parks', ref => ref.orderByChild('id').equalTo(id)).snapshotChanges()
     .map(actions => {

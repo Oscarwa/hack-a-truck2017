@@ -10,6 +10,7 @@
   <ngb-alert type="dark" [dismissible]="false">
     <div>Llegada: {{trailer.arrival.year}}-{{trailer.arrival.month}}-{{trailer.arrival.day}}  {{trailerExt.daysSinceArrival}}</div>
     <div>Salida estimada: {{trailer.estimatedDeparture.year}}-{{trailer.estimatedDeparture.month}}-{{trailer.estimatedDeparture.day}}  {{trailerExt.daysUntilDeparture}}</div>
+    <div>Estacionamiento: {{park.area}}{{park.number}}</div>
   </ngb-alert>
   <ngb-alert type="info" [dismissible]="false">
     <div>Categoria: {{trailerExt.category}}</div>

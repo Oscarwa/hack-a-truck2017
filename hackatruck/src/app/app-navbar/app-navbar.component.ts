@@ -11,7 +11,7 @@ import { Router } from '@angular/router';
 })
 export class AppNavbarComponent implements OnInit {
   trailers: Trailer[];
-  q: Trailer;
+  q: any;
 
   constructor(
     private trailerService: TrailerService,
@@ -38,6 +38,6 @@ export class AppNavbarComponent implements OnInit {
       .debounceTime(100)
       .distinctUntilChanged()
       .map(term => term.length < 2 ? []
-        : this.trailers.filter(v => (v.operator || '').toLowerCase().indexOf(term.toLowerCase()) > -1).slice(0, 10));
+        : this.trailers.filter(v => (v.operatorIn || '').toLowerCase().indexOf(term.toLowerCase()) > -1).slice(0, 10));
 
 }
