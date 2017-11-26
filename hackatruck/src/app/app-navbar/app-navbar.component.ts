@@ -10,7 +10,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./app-navbar.component.css']
 })
 export class AppNavbarComponent implements OnInit {
-  trailers: Trailer[];
+  trailers: any[];
   q: any;
 
   constructor(
@@ -38,6 +38,14 @@ export class AppNavbarComponent implements OnInit {
       .debounceTime(100)
       .distinctUntilChanged()
       .map(term => term.length < 2 ? []
-        : this.trailers.filter(v => (v.operatorIn || '').toLowerCase().indexOf(term.toLowerCase()) > -1).slice(0, 10));
+        : this.deepSearch(term.toLowerCase()));
 
+  deepSearch(term: string) {
+    let byOperator = this.trailers.filter(v => (v.operatorIn || '').toLowerCase().indexOf(term) > -1).slice(0, 10);
+    let byKey = this.trailers.filter(v => (v.$key || '').toLowerCase().indexOf(term) > -1).slice(0, 10);
+    let byTrailer = this.trailers.filter(v => (v.trailer || '').toLowerCase().indexOf(term) > -1).slice(0, 10);
+    let byTractor = this.trailers.filter(v => (v.tractor || '').toLowerCase().indexOf(term) > -1).slice(0, 10);
+    let byContainer = this.trailers.filter(v => (v.container || '').toLowerCase().indexOf(term) > -1).slice(0, 10);
+    return byOperator.concat(byKey, byTrailer, byTractor, byContainer);
+  }
 }

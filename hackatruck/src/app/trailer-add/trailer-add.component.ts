@@ -17,6 +17,7 @@ export class TrailerAddComponent implements OnInit {
   trailer: Trailer = <Trailer>{ };
   submitted = false;
   date: any;
+  isValid: boolean = false;
 
   constructor(private db: AngularFireDatabase, private router: Router, private parkService: ParkService, private trailerService: TrailerService) {
   }
@@ -34,45 +35,51 @@ export class TrailerAddComponent implements OnInit {
     //   this.db.list('parks').push(newItem)
     // }
   }
-
+  
   onSubmit() {
     this.submitted = true;
     // console.log(this.trailer)
-    this.db.list('trailers').push(this.trailer).then(r => {
-      (function(r, self) { 
-        if(self.trailer.isLoaded) {
-          let $parks = self.parkService.getWhere('B');
-          $parks.subscribe(res =>  {
-            let tmpParks = res.filter((item, index) => item.id == null && item.number >= (self.trailer.category - 1) * 25).sort(self.parkSort);
-              if(!!tmpParks.length) { //empty spaces found, assign the nearest one
-                self.parkService.update(tmpParks[0].$key, r.key)
-                self.router.navigate(['/trailers/' + r.key]);                
-              }
-          });
-        } else {
-          //not loaded, goes to area 'A'
-          let $parks = self.parkService.getWhere('A');
-          let departure = self.trailer.estimatedDeparture;
-          if(self.dateDiffInDays(new Date(), new Date(departure.year, departure.month - 1, departure.day)) > 30) {
+    //let is 
+    this.isValid = !!this.trailer.arrival && !!this.trailer.operatorIn && !!this.trailer.category && !!this.trailer.estimatedDeparture && !!this.trailer.licenseNumberIn;
+    if(this.isValid) {
+      this.db.list('trailers').push(this.trailer).then(r => {
+        (function(r, self) { 
+          if(self.trailer.isLoaded) {
+            let $parks = self.parkService.getWhere('B');
             $parks.subscribe(res =>  {
-              let tmpParks = res.filter((item, index) => item.id == null).sort(self.parkSort);
+              let tmpParks = res.filter((item, index) => item.id == null && item.number >= (self.trailer.category - 1) * 25).sort(self.parkSort);
                 if(!!tmpParks.length) { //empty spaces found, assign the nearest one
-                  self.parkService.update(tmpParks[0].$key, r.key);
+                  self.parkService.update(tmpParks[0].$key, r.key)
                   self.router.navigate(['/trailers/' + r.key]);                
                 }
             });
           } else {
-            $parks.subscribe(res =>  {
-              let tmpParks = res.filter((item, index) => item.id == null && item.number >= 51).sort(self.parkSort);
-              if(!!tmpParks.length) { //empty spaces found, assign the nearest one
-                self.parkService.update(tmpParks[0].$key, r.key);
-                self.router.navigate(['/trailers/' + r.key]);
-              }
-            });
+            //not loaded, goes to area 'A'
+            let $parks = self.parkService.getWhere('A');
+            let departure = self.trailer.estimatedDeparture;
+            if(self.dateDiffInDays(new Date(), new Date(departure.year, departure.month - 1, departure.day)) > 30) {
+              $parks.subscribe(res =>  {
+                let tmpParks = res.filter((item, index) => item.id == null).sort(self.parkSort);
+                  if(!!tmpParks.length) { //empty spaces found, assign the nearest one
+                    self.parkService.update(tmpParks[0].$key, r.key);
+                    self.router.navigate(['/trailers/' + r.key]);                
+                  }
+              });
+            } else {
+              $parks.subscribe(res =>  {
+                let tmpParks = res.filter((item, index) => item.id == null && item.number >= 51).sort(self.parkSort);
+                if(!!tmpParks.length) { //empty spaces found, assign the nearest one
+                  self.parkService.update(tmpParks[0].$key, r.key);
+                  self.router.navigate(['/trailers/' + r.key]);
+                }
+              });
+            }
           }
-        }
-      })(r, this);
-    });
+        })(r, this);
+      });
+    } else {
+      alert('Informacion faltante');
+    }
     //console.info(key)
   }
 

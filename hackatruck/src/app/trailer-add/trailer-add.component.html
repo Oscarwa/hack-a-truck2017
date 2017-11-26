@@ -1,21 +1,21 @@
 <form #trailerForm ngForm>
   <div class="form-group">
     <label for="operator">Operador</label>
-    <input type="text" class="form-control" name="operatorIn" placeholder="Juan Rodriguez" [(ngModel)]="trailer.operatorIn" />
+    <input type="text" required class="form-control" name="operatorIn" placeholder="Juan Rodriguez" [(ngModel)]="trailer.operatorIn" />
   </div>
   <div class="form-group">
     <label for="license">Licencia</label>
-    <input type="text" class="form-control" name="licenseNumberIn" placeholder="222233334444" [(ngModel)]="trailer.licenseNumberIn" />
+    <input type="text" required class="form-control" name="licenseNumberIn" placeholder="222233334444" [(ngModel)]="trailer.licenseNumberIn" />
   </div>
   <div class="form-group">
     <div class="row">
       <div class="col-sm">
         <label for="origin">Origen</label>
-        <input type="text" class="form-control" name="origin" placeholder="MTY" [(ngModel)]="trailer.origin" />
+        <input type="text" required class="form-control" name="origin" placeholder="MTY" [(ngModel)]="trailer.origin" />
       </div>
       <div class="col-sm">
         <label for="destination">Destino</label>
-        <input type="text" class="form-control" name="destination" placeholder="GDL" [(ngModel)]="trailer.destination" />
+        <input type="text" required class="form-control" name="destination" placeholder="GDL" [(ngModel)]="trailer.destination" />
       </div>
     </div>
   </div>
@@ -24,12 +24,12 @@
       <div class="col-sm">
         <p for="arrival">Llegada</p>
         <!-- <input type="date" class="form-control" name="arrival" [(ngModel)]="trailer.arrival" /> -->
-        <ngb-datepicker #da [(ngModel)]="trailer.arrival" name="arrival" (navigate)="date = $event.next"></ngb-datepicker>
+        <ngb-datepicker #da required [(ngModel)]="trailer.arrival" name="arrival" (navigate)="date = $event.next"></ngb-datepicker>
       </div>
       <div class="col-sm">
         <p for="estimatedDeparture">Salida estimada</p>
         <!-- <input type="date" class="form-control" name="estimatedDeparture" [(ngModel)]="trailer.estimatedDeparture" /> -->
-        <ngb-datepicker #dp [(ngModel)]="trailer.estimatedDeparture" name="estimatedDeparture" (navigate)="date = $event.next"></ngb-datepicker>        
+        <ngb-datepicker #dp required [(ngModel)]="trailer.estimatedDeparture" name="estimatedDeparture" (navigate)="date = $event.next"></ngb-datepicker>        
       </div>
     </div>
   </div>
@@ -37,17 +37,17 @@
     <div class="row">
       <div class="col-sm-4">
         <label for="category">Categoria</label>
-        <select class="form-control" name="category" [(ngModel)]="trailer.category">
+        <select class="form-control" required name="category" [(ngModel)]="trailer.category">
           <option *ngFor="let categoryT of categories" [ngValue]="categoryT.value">{{categoryT.label}}</option>
         </select>
       </div>
       <div class="col-sm-2">
         <label for="weigth">Peso (kg)</label>
-        <input type="number" class="form-control" name="weigth" [(ngModel)]="trailer.weigth" />
+        <input type="number" class="form-control" name="weigth" value="0" [(ngModel)]="trailer.weigth" />
       </div>
       <div class="col-sm-3">
           <label for="capacity">Capacidad (m<sup>3</sup>)</label>
-          <input type="number" class="form-control" name="capacity" [(ngModel)]="trailer.capacity" />
+          <input type="number" value="0" class="form-control" name="capacity" [(ngModel)]="trailer.capacity" />
         </div>
       <div class="col-sm" data-toggle="buttons">
         <label for="isLoaded" style="display:block;">&nbsp;</label>
@@ -59,15 +59,15 @@
   </div>
   <div class="form-group">
     <label for="tractor">Tractor</label>
-    <input type="text" class="form-control" name="tractor" [(ngModel)]="trailer.tractor" />
+    <input type="text" required class="form-control" name="tractor" [(ngModel)]="trailer.tractor" />
   </div>
   <div class="form-group">
     <label for="trailer">Remolque</label>
-    <input type="text" class="form-control" name="trailer" [(ngModel)]="trailer.trailer" />
+    <input type="text" required class="form-control" name="trailer" [(ngModel)]="trailer.trailer" />
   </div>
   <div class="form-group">
     <label for="container">Contenedor</label>
-    <input type="text" class="form-control" name="container" [(ngModel)]="trailer.container" />
+    <input type="text" required class="form-control" name="container" [(ngModel)]="trailer.container" />
   </div>
   <div class="row float-sm-right">
       <div class="col">

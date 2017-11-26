@@ -21,7 +21,7 @@
       <input type="text" class="form-control" class="form-control mr-sm-2" placeholder="Busqueda"  
         name="q" [(ngModel)]="q" 
         [ngbTypeahead]="search" 
-        [resultFormatter]="formatter" 
+        [resultTemplate]="rt"
         [inputFormatter]="inputFormatter" />
       <button class="btn btn-outline-success my-2 my-sm-0" type="button" (click)="submit()">Buscar</button>
       <button class="btn btn-outline-success my-2 my-sm-0 qr-code" type="button" (click)="submit()">
@@ -29,6 +29,20 @@
     </form>
   </div>
 </nav>
+
+<ng-template #rt let-r="result" let-t="term">
+  <div class="result">
+    <div>
+      Folio: {{r.$key}}
+    </div> 
+    <div>
+      Operador: {{r.operatorIn}}
+    </div>
+    <div>
+      Ruta: {{r.origin}}-{{r.destination}}
+    </div>
+  </div>
+</ng-template>
 <br />
 <br />
 <br />

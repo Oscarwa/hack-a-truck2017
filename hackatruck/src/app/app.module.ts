@@ -22,6 +22,7 @@ import { TrailerService } from './trailer.service';
 import { TrailerDetailComponent } from './trailer-detail/trailer-detail.component';
 import { NgxChartsModule } from '@swimlane/ngx-charts';
 import { TrailerCheckoutComponent } from './trailer-checkout/trailer-checkout.component';
+import { ChecklistComponent } from './checklist/checklist.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,8 @@ import { TrailerCheckoutComponent } from './trailer-checkout/trailer-checkout.co
     ParkingLotComponent,
     HomeComponent,
     TrailerDetailComponent,
-    TrailerCheckoutComponent
+    TrailerCheckoutComponent,
+    ChecklistComponent
   ],
   imports: [
     BrowserModule,

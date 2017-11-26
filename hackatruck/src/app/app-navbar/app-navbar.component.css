@@ -13,3 +13,8 @@
 .logo {
     width: 75px;
 }
+
+.result {
+    font-size: 0.8em;
+    color: #555555;
+}

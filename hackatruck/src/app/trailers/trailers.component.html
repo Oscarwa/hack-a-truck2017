@@ -4,12 +4,19 @@
         <ngb-alert [type]="trailer.active ? 'info' : 'secondary'" [dismissible]="false">
             <h3><a routerLink="/trailers/{{trailer.$key}}">Trailer #: {{trailer.trailer}}</a> </h3>
             <div>Ruta: {{trailer.origin}} - {{trailer.destination}}</div>
-            <div>Llegada: {{trailer.arrival.year}}-{{trailer.arrival.month}}-{{trailer.arrival.day}}</div>
-            <div>Salida estimada: {{trailer.estimatedDeparture.year}}-{{trailer.estimatedDeparture.month}}-{{trailer.estimatedDeparture.day}}</div>
-            <div>Operador: {{trailer.operatorIn}}</div>
-            <div>Contenedor: {{trailer.container}}</div>
-            <div>
-              <button class="btn btn-primary" *ngIf="trailer.active" routerLink="/trailers/checkout/{{trailer.$key}}">Salida</button>
+            <div class="row">
+              <div class="col-md">
+                <div>Llegada: {{trailer.arrival.year}}-{{trailer.arrival.month}}-{{trailer.arrival.day}}</div>
+                <div>Salida estimada: {{trailer.estimatedDeparture.year}}-{{trailer.estimatedDeparture.month}}-{{trailer.estimatedDeparture.day}}</div>
+              </div>
+              <div class="col-md">
+                <div>Operador: {{trailer.operatorIn}}</div>
+                <div>Contenedor: {{trailer.container}}</div>
+              </div>
+            </div>
+            <div class="d-flex justify-content-end">
+                <button class="btn btn-secondary" routerLink="/trailers/{{trailer.$key}}">Detalle</button>
+                <button class="btn btn-primary" *ngIf="trailer.active" routerLink="/trailers/checkout/{{trailer.$key}}">Salida</button>
             </div>
         </ngb-alert> 
     </div>
