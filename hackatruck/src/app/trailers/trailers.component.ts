@@ -2,18 +2,20 @@ import { Component, OnInit } from '@angular/core';
 import { AngularFireDatabase } from 'angularfire2/database'; 
 import { Observable } from 'rxjs/Observable';
 import { Trailer } from '../trailer';
+import { TrailerService } from '../trailer.service';
 @Component({
   selector: 'app-trailers',
   templateUrl: './trailers.component.html',
   styleUrls: ['./trailers.component.css']
 })
 export class TrailersComponent implements OnInit {
-  trailersObservable: Observable<Trailer[]>;
-  constructor(private db: AngularFireDatabase) { }
+  trailers: Trailer[];
+  constructor(private trailerService: TrailerService) { }
+  
   ngOnInit() {
-    this.trailersObservable = this.getTrailers('/trailers');
-  }
-  getTrailers(listPath): Observable<Trailer[]> {
-    return this.db.list<Trailer>(listPath).valueChanges();
+    let $trailers = this.trailerService.getAllPlus();
+    $trailers.subscribe(res => {
+      this.trailers = res;
+    });
   }
 }

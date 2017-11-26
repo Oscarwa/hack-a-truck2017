@@ -45,11 +45,11 @@ export class TrailerDetailComponent implements OnInit {
       this.trailer = res;
       let arrival = this.daydiff(new Date(res.arrival.year, res.arrival.month - 1, res.arrival.day), new Date());
       let departure = this.daydiff(new Date(), new Date(res.estimatedDeparture.year, res.estimatedDeparture.month - 1, res.estimatedDeparture.day));
-
+      let cat = this.categories.filter((item) => item.value == this.trailer.category)[0] || {label: '---'};
       this.trailerExt = {
         daysSinceArrival: arrival - 1 == 0 ? '(hoy)' : arrival - 1 > 0 ? `(hace ${arrival} dias)` : '' ,
-        daysUntilDeparture: departure > 0 ? `(en ${departure} dias)` : `(hace ${arrival} dias)`,
-        category: this.categories.filter((item) => item.value == this.trailer.category)[0].label,
+        daysUntilDeparture: departure > 0 ? `(en ${departure} dias)` : `(hace ${departure} dias)`,
+        category: cat.label,
         folio: id
       }
       this.loaded = true;

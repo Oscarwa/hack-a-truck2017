@@ -16,6 +16,8 @@ export class TrailerCheckoutComponent implements OnInit {
   trailer: Trailer = <Trailer>{ arrival: {year:0,month:0,day:0} };
   park = <any>{};
   id: string;
+  date: any;
+
   constructor(
     private trailerService: TrailerService, 
     private parkService: ParkService, 

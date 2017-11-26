@@ -6,21 +6,21 @@
           <ngx-charts-number-card
           [view]="view"
           [scheme]="colorScheme"
-          [results]="single"
+          [results]="chart1"
           (select)="onSelect($event)">
         </ngx-charts-number-card>
       </div>
       <div class="col-md">
-        <h4>Heading</h4>
+        <h4>Ocupacion actual</h4>
         <ngx-charts-gauge
           [view]="view"
           [scheme]="colorScheme"
-          [results]="single"
+          [results]="chart4"
           [min]="0"
           [max]="100"
           [angleSpan]="240"
           [startAngle]="-120"
-          [units]="'alerts'"
+          [units]="'lugares'"
           [bigSegments]="10"
           [smallSegments]="5"
           (select)="onSelect($event)">
@@ -30,11 +30,11 @@
     <hr>
     <div class="row">
       <div class="col-md">
-        <h4>Heading</h4>
+        <h4>Detalle de ocupacion</h4>
         <ngx-charts-pie-chart
         [view]="view"
         [scheme]="colorScheme"
-        [results]="single"
+        [results]="chart2"
         [legend]="showLegend"
         [explodeSlices]="explodeSlices"
         [labels]="showLabels"
@@ -44,11 +44,11 @@
       </ngx-charts-pie-chart>
       </div>
       <div class="col-md">
-        <h4>Estadistica</h4>
+        <h4>Ocupacion por mes</h4>
         <ngx-charts-line-chart
         [view]="view"
         [scheme]="colorScheme"
-        [results]="multi"
+        [results]="chart3"
         [gradient]="gradient"
         [xAxis]="showXAxis"
         [yAxis]="showYAxis"

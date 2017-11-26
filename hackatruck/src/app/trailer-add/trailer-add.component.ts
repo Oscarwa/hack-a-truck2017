@@ -16,6 +16,7 @@ export class TrailerAddComponent implements OnInit {
   categories: Category[];
   trailer: Trailer = <Trailer>{ };
   submitted = false;
+  date: any;
 
   constructor(private db: AngularFireDatabase, private router: Router, private parkService: ParkService, private trailerService: TrailerService) {
   }
@@ -45,7 +46,7 @@ export class TrailerAddComponent implements OnInit {
             let tmpParks = res.filter((item, index) => item.id == null && item.number >= (self.trailer.category - 1) * 25).sort(self.parkSort);
               if(!!tmpParks.length) { //empty spaces found, assign the nearest one
                 self.parkService.update(tmpParks[0].$key, r.key)
-                //console.info(tmpParks[0].area, tmpParks[0].number);
+                self.router.navigate(['/trailers/' + r.key]);                
               }
           });
         } else {
@@ -56,14 +57,16 @@ export class TrailerAddComponent implements OnInit {
             $parks.subscribe(res =>  {
               let tmpParks = res.filter((item, index) => item.id == null).sort(self.parkSort);
                 if(!!tmpParks.length) { //empty spaces found, assign the nearest one
-                  self.parkService.update(tmpParks[0].$key, r.key)
+                  self.parkService.update(tmpParks[0].$key, r.key);
+                  self.router.navigate(['/trailers/' + r.key]);                
                 }
             });
           } else {
             $parks.subscribe(res =>  {
               let tmpParks = res.filter((item, index) => item.id == null && item.number >= 51).sort(self.parkSort);
               if(!!tmpParks.length) { //empty spaces found, assign the nearest one
-                self.parkService.update(tmpParks[0].$key, r.key)
+                self.parkService.update(tmpParks[0].$key, r.key);
+                self.router.navigate(['/trailers/' + r.key]);
               }
             });
           }
@@ -71,7 +74,6 @@ export class TrailerAddComponent implements OnInit {
       })(r, this);
     });
     //console.info(key)
-    //this.router.navigate(['/']);
   }
 
   parkSort(a, b) { return a.number - b.number };
